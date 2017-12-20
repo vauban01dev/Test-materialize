@@ -1,0 +1,48 @@
+{% extends "Squelette.html" %}
+      
+{% block Contenu %}
+    <div class="row">
+        <form id="form_inscription" class="col s12" method="post">
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" id="Nom" name="Nom" class="validate">
+                    <label for="Nom">Nom</label>
+                </div>
+
+                <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" id="Prenom" name="Prenom" class="validate">
+                        <label for="Prenom">Prenom</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="password" id="Password" name="Password" class="validate">
+                    <label for="Password">Mot de passe</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input type="email" id="Email" name="Email" class="validate">
+                    <label for="Email">Adresse Email</label>
+                </div>
+            </div>
+
+            <div class="row">
+                
+  <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer
+        <i class="material-icons right">send</i>
+      </button>
+            
+            </div>
+
+        </form>
+
+    </div>
+{% endblock %}
+
+   
