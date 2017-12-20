@@ -28,7 +28,31 @@ def inscription_traitement():
 @app.route("/debug", methods=['GET'])
 def debug():
     AllUtilisateurs = Gestion_BDD.Recuperation_Utilisateur()
-    return AllUtilisateurs[0][0]
+    return render_template('debug.html', AllUtilisateurs=AllUtilisateurs)
+
+@app.route("/connexion", methods=['GET'])
+def connexion_form():
+    return render_template('Connexion.html')
+
+@app.route("/connexion", methods=['POST'])
+def connexion_traitement():
+    UtilisateurBDD = Gestion_BDD.Recuperation_Utilisateur_Specifique(request.form['Email'])
+    if UtilisateurBDD is None:
+        return "Pas d'utilisateur en base"
+    else:
+        if request.form['Password'] == UtilisateurBDD[2]:
+            session['Email'] = UtilisateurBDD[3]
+            session['Nom'] = UtilisateurBDD[0]
+            session['Prenom'] = UtilisateurBDD[1]         
+            return session['Email']
+        else:
+            return "erreur de mot de passe"
+
+
+
 
 if __name__ == '__main__':
+    app.secret_key = '1234'
+
     app.run(debug=True)
+    

@@ -1,0 +1,13 @@
+<p>Infos Utilisateurs :</p>
+{% for Utilisateur in AllUtilisateurs %}
+
+
+    <li>Nom : {{ Utilisateur[0]}}</li>
+    <li>Prenom : {{ Utilisateur[1]}}</li>
+    <li>Password : {{ Utilisateur[2]}}</li>
+    <li>Email : {{ Utilisateur[3]}}</li>
+    <br/>
+    
+
+
+{% endfor %}

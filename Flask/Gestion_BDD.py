@@ -14,3 +14,11 @@ def Recuperation_Utilisateur():
     Utilisateurs = curseur.fetchall()
     connexion.close()
     return Utilisateurs
+
+def Recuperation_Utilisateur_Specifique(Email_Utilisateur):
+    connexion = sql.connect("database.db")
+    curseur = connexion.cursor()
+    curseur.execute("SELECT Nom, Prenom, Pass, Email FROM Utilisateur WHERE Email = '{}'".format(Email_Utilisateur))
+    Resultat = curseur.fetchone()
+    connexion.close()
+    return Resultat

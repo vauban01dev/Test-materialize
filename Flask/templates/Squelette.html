@@ -14,11 +14,11 @@
       
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="{{ url_for('accueil') }}" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">Calendrier</a></li>
-          <li><a href="#">Inscription</a></li>
-          <li><a href="#">Connexion</a></li>
+          <li><a href="{{ url_for('inscription_form') }}">Inscription</a></li>
+          <li><a href="{{ url_for('connexion_form') }}">Connexion</a></li>
         </ul>
       </div>
     </nav>
