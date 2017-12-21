@@ -4,6 +4,7 @@ create table Utilisateur (
     Nom text not null,
     Prenom text not null,
     Pass text not null,
-    Email text not null
+    Email text not null,
+    Admin boolean not null
 
 );

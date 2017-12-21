@@ -5,6 +5,7 @@ import os
 import sqlite3
 from flask import *
 import Gestion_BDD
+import Gestion_Utilisateur
 app = Flask(__name__)
 
 @app.route("/")
@@ -23,7 +24,7 @@ def inscription_traitement():
     Email = request.form['Email']
     Password = request.form['Password']
     Gestion_BDD.Insertion_Utilisateur(Nom, Prenom, Password, Email)
-    return "Nom : {}\nPrenom: {}\nEmail: {}\nPassword: {}".format(Nom, Prenom, Email, Password)
+    return "Nom : {}\nPrenom: {}\nEmail: {}\nPassword: {}\nAdmin : {}".format(Nom, Prenom, Email, Password, Admin)
     
 @app.route("/debug", methods=['GET'])
 def debug():
@@ -43,10 +44,27 @@ def connexion_traitement():
         if request.form['Password'] == UtilisateurBDD[2]:
             session['Email'] = UtilisateurBDD[3]
             session['Nom'] = UtilisateurBDD[0]
-            session['Prenom'] = UtilisateurBDD[1]         
-            return session['Email']
+            session['Prenom'] = UtilisateurBDD[1]
+            session['Admin'] = UtilisateurBDD[4]         
+            return redirect(url_for('accueil'))
         else:
             return "erreur de mot de passe"
+
+@app.route('/deconnexion',methods=['GET'])
+def deconnexion():
+    session.pop('Email', None)
+    session.pop('Nom', None)
+    session.pop('Prenom', None)
+    return redirect(url_for('accueil'))
+
+@app.route('/nouvelle_Article', methods=['GET'])
+def nouvelle_Article_form():
+    if 'Email' in session:
+        return render_template('Nv_Article.html')
+    else:
+        return 'Merci de vous connecter'
+        
+    
 
 
 

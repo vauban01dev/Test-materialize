@@ -11,14 +11,35 @@
   </head>
 
   <body>
+
+    <!-- Menu Utilisateur Authentifié -->
+      <ul id="Option_Utilisateur" class="dropdown-content">
+          <li><a href="{{ url_for('nouvelle_Article_form') }}">Ecrire un nouvel article</a></li>
+          <li><a href="#!">two</a></li>
+          <li class="divider"></li>
+          <li><a href="{{ url_for('deconnexion') }}">Déconnexion</a></li>
+        </ul>
+
+
+
+
       
     <nav>
       <div class="nav-wrapper">
         <a href="{{ url_for('accueil') }}" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">Calendrier</a></li>
-          <li><a href="{{ url_for('inscription_form') }}">Inscription</a></li>
-          <li><a href="{{ url_for('connexion_form') }}">Connexion</a></li>
+          {% block Menu_Utilisateur %}
+
+            {% if session['Nom'] is not defined %}
+              <li><a href="{{ url_for('inscription_form') }}">Inscription</a></li>
+              <li><a href="{{ url_for('connexion_form') }}">Connexion</a></li>
+
+            {% else %}
+            <li><a class="dropdown-button" href="#" data-activates="Option_Utilisateur">{{ session['Nom'] + " " + session['Prenom'] }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {% endif %}
+
+          {% endblock %}
         </ul>
       </div>
     </nav>
