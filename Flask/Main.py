@@ -5,12 +5,12 @@ import os
 import sqlite3
 from flask import *
 import Gestion_BDD
-import Gestion_Utilisateur
 app = Flask(__name__)
 
 @app.route("/")
 def accueil():
-    return render_template('Squelette.html')
+    allArticles = Gestion_BDD.Recuperation_Articles()
+    return render_template('Squelette.html', allArticles=allArticles)
 
 
 @app.route("/inscription", methods=['GET'])
@@ -24,7 +24,7 @@ def inscription_traitement():
     Email = request.form['Email']
     Password = request.form['Password']
     Gestion_BDD.Insertion_Utilisateur(Nom, Prenom, Password, Email)
-    return "Nom : {}\nPrenom: {}\nEmail: {}\nPassword: {}\nAdmin : {}".format(Nom, Prenom, Email, Password, Admin)
+    return "Nom : {}\nPrenom: {}\nEmail: {}\nPassword: {}".format(Nom, Prenom, Email, Password)
     
 @app.route("/debug", methods=['GET'])
 def debug():
@@ -64,6 +64,11 @@ def nouvelle_Article_form():
     else:
         return 'Merci de vous connecter'
         
+@app.route('/nouvelle_Article', methods=['POST'])
+def nouvelle_Article_traitement():
+    Gestion_BDD.Insertion_Article(request.form['Titre'], request.form['Zone_Article'])
+    return "Merci d'avoir laisser un article"
+
     
 
 

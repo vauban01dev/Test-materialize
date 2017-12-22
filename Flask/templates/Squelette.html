@@ -51,7 +51,19 @@
         <div class="card-panel indigo darken-1">
           <div class="white-text">
             <p>Dernier Articles</p>
-            {% block Article %}{% endblock %}
+            {% block Article %}
+            
+            {% for Article in allArticles %}
+
+
+            <li>{{ Article[0] }}</li>
+            <p>{{ Article[1] }}</p>
+
+            
+
+            {% endfor %}
+            
+            {% endblock %}
           </div>
         </div>
       </div>

@@ -8,3 +8,9 @@ create table Utilisateur (
     Admin boolean not null
 
 );
+
+create table Articles (
+    id integer primary key autoincrement,
+    Titre text not null,
+    Contenu text not null
+)
